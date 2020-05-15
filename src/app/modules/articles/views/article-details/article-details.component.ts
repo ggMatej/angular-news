@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { ApplicationState } from 'src/app/modules/ngrx-store/ApplicationState';
@@ -11,16 +11,19 @@ import { ArticleItem } from '../../models/ArticleItem';
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],
 })
-export class ArticleDetailsComponent implements OnInit {
+export class ArticleDetailsComponent implements OnInit, OnDestroy {
   articleId: number;
   articleSubscription: Subscription;
-  routeSubscription: Subscription;
   article: ArticleItem;
 
   constructor(
     private route: ActivatedRoute,
     private store: Store<ApplicationState>
   ) {}
+
+  ngOnDestroy(): void {
+    this.articleSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
