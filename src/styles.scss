@@ -1,1 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
+@import "normalize.css";
+
+$ff-sans: "Rational Display", Helvetica, Arial, sans-serif;
+$ff-serif: Georgia, Times, serif;
+$color-text: #fff;
+
+html {
+  height: 100%;
+  background: linear-gradient(
+    31deg,
+    rgba(34, 95, 195, 1) 0%,
+    rgba(39, 77, 218, 0.6460959383753502) 49%,
+    rgba(45, 253, 242, 1) 100%
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body {
+  height: 100%;
+  font-family: $ff-sans;
+  color: $color-text;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+svg {
+  max-width: 100%;
+}
+
+.wrapper {
+  max-width: 1356px;
+  padding: 0 60;
+  margin: 0 auto;
+
+  @media (--screen-from-med) {
+    padding: 0 60;
+  }
+}
+
+button,
+a,
+input {
+  transition: all 0.3s ease;
+}
+
+button {
+  outline: 0;
+}
+
+button:hover,
+a:hover,
+input:hover {
+  opacity: 0.6;
+  position: relative;
+  bottom: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.btn {
+  border-width: 0;
+  border-radius: 20px;
+  padding: 8px 20px;
+  margin: 0 10px;
+  color: #fff;
+}
+
+.btn-group {
+  margin-top: 10px;
+  display: flex;
+  position: absolute;
+  top: 140px;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+
+.btn--primary {
+  background-color: rgba(135, 206, 250, 0.459);
+
+  @media (max-width: 500px) {
+    margin-top: 10px;
+  }
+}

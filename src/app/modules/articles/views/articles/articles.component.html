@@ -1,0 +1,10 @@
+<div class="article-list-error" *ngIf="(articles$ | async).length === 0">
+  <h2>Sorry, no articles yet.</h2>
+</div>
+<div class="article-list" *ngIf="articles$ | async">
+  <app-article
+    *ngFor="let article of articles$ | async; index as articleId"
+    [article]="article"
+    [articleId]="articleId"
+  ></app-article>
+</div>
