@@ -36,7 +36,7 @@ export class ArticleComponent implements OnInit {
       .pipe(select(ArticleSelectors.getSavedArticles))
       .subscribe((savedArticles) => {
         const isSaved = savedArticles.filter(
-          (article) => JSON.stringify(article) === JSON.stringify(this.article)
+          (article) => article.title === this.article.title
         );
         isSaved.length ? (this.isSaved = true) : (this.isSaved = false);
       });

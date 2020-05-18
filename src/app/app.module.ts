@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
@@ -26,7 +26,10 @@ import { ApplicationState } from './modules/ngrx-store/ApplicationState';
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {
-  return localStorageSync({ keys: ['articles'], rehydrate: true })(reducer);
+  return localStorageSync({
+    keys: ['articles'],
+    rehydrate: true,
+  })(reducer);
 }
 
 const persistedReducers: ActionReducerMap<ApplicationState> = reducers;
@@ -36,7 +39,6 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     ArticlesModule,
     RouterModule.forRoot([
