@@ -1,5 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ArticleItem } from '../../models/ArticleItem';
+import { Store, select } from '@ngrx/store';
+import { ApplicationState } from 'src/app/modules/ngrx-store/ApplicationState';
+import { ArticleActions } from '../../store/articles.actions';
+import { ArticleSelectors } from '../../store/articles.selectors';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { createNgModule } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-article',
@@ -10,7 +17,28 @@ export class ArticleComponent implements OnInit {
   @Input() article: ArticleItem;
   @Input() articleId: number;
 
-  constructor() {}
+  articlesSubscription: Subscription;
+  isSaved: boolean;
 
-  ngOnInit(): void {}
+  constructor(private store: Store<ApplicationState>) {}
+
+  ngOnInit(): void {
+    this.checkIfSaved();
+    console.log('onInit');
+  }
+
+  onSaveForLater() {
+    this.store.dispatch(ArticleActions.SaveRequest({ article: this.article }));
+  }
+
+  checkIfSaved() {
+    this.articlesSubscription = this.store
+      .pipe(select(ArticleSelectors.getSavedArticles))
+      .subscribe((savedArticles) => {
+        const isSaved = savedArticles.filter(
+          (article) => JSON.stringify(article) === JSON.stringify(this.article)
+        );
+        isSaved.length ? (this.isSaved = true) : (this.isSaved = false);
+      });
+  }
 }

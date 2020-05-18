@@ -1,7 +1,9 @@
 enum ArticleActions {
-  Get = '[ARTICLES] Get Articles',
-  Success = '[ARTICLES] Articles Success',
+  GetArticlesRequest = '[ARTICLES] Aricles Get Request',
+  GetArticlesSuccess = '[ARTICLES EFFECT] Articles Get Success',
   Error = '[ARTICLES] Articles Error',
+  SaveArticleRequest = '[ARTICLES] Article save request',
+  SaveArticleSuccess = '[ARTICLES EFFECT] Article save success',
 }
 
 export const ArticleActionTypes = {

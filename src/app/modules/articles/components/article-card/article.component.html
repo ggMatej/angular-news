@@ -7,7 +7,13 @@
       <button [routerLink]="['/articles', articleId]" class="btn btn--primary">
         Read more
       </button>
-      <button class="btn btn--primary">Save for later</button>
+      <button
+        [disabled]="isSaved"
+        (click)="onSaveForLater()"
+        class="btn btn--primary"
+      >
+        Save for later
+      </button>
     </div>
   </div>
 </div>

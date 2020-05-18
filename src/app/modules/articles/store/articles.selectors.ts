@@ -6,6 +6,12 @@ const getAllArticles = createSelector(
   (articles) => articles.filter((article) => article.urlToImage)
 );
 
+const getSavedArticles = createSelector(
+  (state: ApplicationState) => state.articles.savedArticles,
+  (savedArticles) => savedArticles
+);
+
 export const ArticleSelectors = {
   getAllArticles,
+  getSavedArticles,
 };

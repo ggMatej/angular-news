@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ArticlesResponse } from '../models/ArticlesResponse';
+import { ArticleItem } from '../models/ArticleItem';
 
 @Injectable({
   providedIn: 'root',
@@ -14,5 +15,9 @@ export class ArticleService {
 
   getArticles(): Observable<ArticlesResponse> {
     return this.http.get<ArticlesResponse>(this.BASE_URL);
+  }
+
+  saveArticle(article: ArticleItem): Observable<ArticleItem> {
+    return of(article);
   }
 }
