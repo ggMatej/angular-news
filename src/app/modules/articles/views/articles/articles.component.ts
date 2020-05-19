@@ -15,15 +15,14 @@ import { ArticleSelectors } from 'src/app/modules/articles/store/articles.select
 export class ArticlesComponent implements OnInit {
   articles$: Observable<ArticleItem[]>;
 
-  constructor(private store: Store<ApplicationState>) {
-    this.getArticles();
-  }
+  constructor(private store: Store<ApplicationState>) {}
 
   ngOnInit(): void {
+    this.setArticles();
     this.store.dispatch(ArticleActions.GetRequest());
   }
 
-  getArticles() {
+  setArticles() {
     this.articles$ = this.store.pipe(select(ArticleSelectors.getAllArticles));
   }
 }

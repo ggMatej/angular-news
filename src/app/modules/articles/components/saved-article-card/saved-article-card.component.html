@@ -1,0 +1,18 @@
+<div class="article-card">
+  <img class="article-image" [src]="article.urlToImage" />
+  <div class="article-content">
+    <h3>{{ article.title }}</h3>
+    <h5>{{ article.author }}, {{ article.publishedAt | date }}</h5>
+    <div class="btn-group">
+      <button
+        [routerLink]="['/saved-articles', articleId]"
+        class="btn btn--primary"
+      >
+        Read more
+      </button>
+      <button (click)="onRemove()" class="btn btn--primary">
+        Remove
+      </button>
+    </div>
+  </div>
+</div>

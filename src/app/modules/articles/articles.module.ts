@@ -5,9 +5,19 @@ import { ArticlesComponent } from './views/articles/articles.component';
 import { ArticleDetailsComponent } from './views/article-details/article-details.component';
 import { ArticleComponent } from './components/article-card/article.component';
 import { RouterModule } from '@angular/router';
+import { SavedArticlesComponent } from './views/saved-articles/saved-articles.component';
+import { SavedArticleCardComponent } from './components/saved-article-card/saved-article-card.component';
+import { SavedArticlesDetailsComponent } from './views/saved-articles-details/saved-articles-details.component';
 
 @NgModule({
-  declarations: [ArticleComponent, ArticlesComponent, ArticleDetailsComponent],
+  declarations: [
+    ArticleComponent,
+    ArticlesComponent,
+    ArticleDetailsComponent,
+    SavedArticlesComponent,
+    SavedArticleCardComponent,
+    SavedArticlesDetailsComponent,
+  ],
   imports: [CommonModule, RouterModule],
 })
 export class ArticlesModule {}

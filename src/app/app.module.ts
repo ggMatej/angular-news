@@ -8,7 +8,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { ArticlesModule } from './modules/articles/articles.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { articlesReducer } from './modules/articles/store/articles.reducer';
 import { ArticlesEffects } from './modules/articles/store/articles.effect';
 import { ArticlesComponent } from './modules/articles/views/articles/articles.component';
 import { ArticleDetailsComponent } from './modules/articles/views/article-details/article-details.component';
@@ -22,6 +21,8 @@ import {
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { reducers } from './modules/ngrx-store/Reducers';
 import { ApplicationState } from './modules/ngrx-store/ApplicationState';
+import { SavedArticlesComponent } from './modules/articles/views/saved-articles/saved-articles.component';
+import { SavedArticlesDetailsComponent } from './modules/articles/views/saved-articles-details/saved-articles-details.component';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -44,6 +45,11 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     RouterModule.forRoot([
       { path: '', component: ArticlesComponent },
       { path: 'articles/:articleId', component: ArticleDetailsComponent },
+      {
+        path: 'saved-articles/:articleId',
+        component: SavedArticlesDetailsComponent,
+      },
+      { path: 'saved-articles', component: SavedArticlesComponent },
     ]),
     StoreModule.forRoot(persistedReducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
