@@ -36,5 +36,9 @@ export const articlesReducer = createReducer(
     ...state,
     savedArticles: [...state.savedArticles, payload.article],
     loading: false,
+  })),
+  on(ArticleActions.DeleteSuccess, (state, { payload }) => ({
+    ...state,
+    savedArticles: payload.savedArticles,
   }))
 );

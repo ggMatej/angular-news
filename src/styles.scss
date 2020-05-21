@@ -95,12 +95,27 @@ a {
   }
 }
 
+.btn--modal {
+  color: black;
+  margin: 0 10px;
+  background: transparent;
+  border-width: 0;
+}
+
 /* Navigation link styles */
 nav {
-  padding-left: 50px;
+  padding: 0 50px 10px 50px;
   position: fixed;
   top: 0;
   left: 0;
+  background: linear-gradient(
+    31deg,
+    rgba(121, 121, 121, 1) 0%,
+    rgba(96, 96, 96, 1) 28%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  width: 100%;
+  z-index: 1;
 }
 nav a {
   padding: 5px 10px;

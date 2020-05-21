@@ -17,6 +17,7 @@ export class ArticleService {
     return this.http.get<ArticlesResponse>(this.BASE_URL);
   }
 
+  // Ovo nema smisla ali ovako bi radio da moram radit request za save
   saveArticle(article: ArticleItem): Observable<ArticleItem> {
     return of(article);
   }

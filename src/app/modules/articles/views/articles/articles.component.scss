@@ -6,3 +6,12 @@
 .article-list {
   margin: 100px auto;
 }
+
+.select {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  margin-top: 12px;
+  margin-right: 120px;
+}

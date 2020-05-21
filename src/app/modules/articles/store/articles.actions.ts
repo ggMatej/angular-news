@@ -20,4 +20,8 @@ export const ArticleActions = {
     ArticleActionTypes.SaveArticleSuccess,
     props<{ payload: { article: ArticleItem } }>()
   ),
+  DeleteSuccess: createAction(
+    ArticleActionTypes.DeleteArticleSuccess,
+    props<{ payload: { savedArticles: ArticleItem[] } }>()
+  ),
 };

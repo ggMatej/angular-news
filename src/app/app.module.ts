@@ -23,6 +23,7 @@ import { reducers } from './modules/ngrx-store/Reducers';
 import { ApplicationState } from './modules/ngrx-store/ApplicationState';
 import { SavedArticlesComponent } from './modules/articles/views/saved-articles/saved-articles.component';
 import { SavedArticlesDetailsComponent } from './modules/articles/views/saved-articles-details/saved-articles-details.component';
+import { ComponentsModule } from './components/components.module';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -39,6 +40,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    ComponentsModule,
     BrowserModule,
     HttpClientModule,
     ArticlesModule,

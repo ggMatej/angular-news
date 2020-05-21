@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApplicationState } from 'src/app/modules/ngrx-store/ApplicationState';
 import { Store, select } from '@ngrx/store';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ArticleItem } from 'src/app/modules/articles/models/ArticleItem';
 import { ArticleActions } from 'src/app/modules/articles/store/articles.actions';
 import { ArticleSelectors } from 'src/app/modules/articles/store/articles.selectors';
@@ -12,17 +12,44 @@ import { ArticleSelectors } from 'src/app/modules/articles/store/articles.select
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss'],
 })
-export class ArticlesComponent implements OnInit {
-  articles$: Observable<ArticleItem[]>;
+export class ArticlesComponent implements OnInit, OnDestroy {
+  articles: ArticleItem[];
+  filteredArticles: ArticleItem[];
+  articlesSubscription: Subscription;
+  newsSources: Set<string>;
 
   constructor(private store: Store<ApplicationState>) {}
 
+  ngOnDestroy(): void {
+    this.articlesSubscription.unsubscribe();
+  }
+
   ngOnInit(): void {
-    this.setArticles();
     this.store.dispatch(ArticleActions.GetRequest());
+    this.setArticles();
   }
 
   setArticles() {
-    this.articles$ = this.store.pipe(select(ArticleSelectors.getAllArticles));
+    const newsSources = [];
+
+    this.articlesSubscription = this.store
+      .pipe(select(ArticleSelectors.getAllArticles))
+      .subscribe((articles) => {
+        this.articles = articles;
+        this.filteredArticles = articles;
+      });
+
+    this.articles.forEach((article) => newsSources.push(article.source.name));
+    this.newsSources = new Set(newsSources);
+  }
+
+  onChange(selectedSource) {
+    if (selectedSource === 'All') {
+      this.filteredArticles = this.articles;
+      return;
+    }
+    this.filteredArticles = this.articles.filter(
+      (article) => article.source.name === selectedSource
+    );
   }
 }

@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { SavedArticlesComponent } from './views/saved-articles/saved-articles.component';
 import { SavedArticleCardComponent } from './components/saved-article-card/saved-article-card.component';
 import { SavedArticlesDetailsComponent } from './views/saved-articles-details/saved-articles-details.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { SavedArticlesDetailsComponent } from './views/saved-articles-details/sa
     SavedArticleCardComponent,
     SavedArticlesDetailsComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ComponentsModule],
 })
 export class ArticlesModule {}

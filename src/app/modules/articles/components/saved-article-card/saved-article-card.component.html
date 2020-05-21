@@ -10,9 +10,16 @@
       >
         Read more
       </button>
-      <button (click)="onRemove()" class="btn btn--primary">
+      <button (click)="showDialog()" class="btn btn--primary">
         Remove
       </button>
     </div>
   </div>
 </div>
+<app-modal id="modal" class="hidden">
+  <h2>Remove from saved articles?</h2>
+  <div>
+    <button class="btn--modal" (click)="onRemove()">Remove</button>
+    <button class="btn--modal">Cancel</button>
+  </div>
+</app-modal>
