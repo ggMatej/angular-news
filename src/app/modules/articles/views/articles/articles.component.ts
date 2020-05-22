@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApplicationState } from 'src/app/modules/ngrx-store/ApplicationState';
 import { Store, select } from '@ngrx/store';
 
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ArticleItem } from 'src/app/modules/articles/models/ArticleItem';
 import { ArticleActions } from 'src/app/modules/articles/store/articles.actions';
 import { ArticleSelectors } from 'src/app/modules/articles/store/articles.selectors';
@@ -17,6 +17,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   filteredArticles: ArticleItem[];
   articlesSubscription: Subscription;
   newsSources: Set<string>;
+  filter: string;
 
   constructor(private store: Store<ApplicationState>) {}
 
@@ -44,6 +45,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   }
 
   onChange(selectedSource) {
+    this.filter = selectedSource;
     if (selectedSource === 'All') {
       this.filteredArticles = this.articles;
       return;

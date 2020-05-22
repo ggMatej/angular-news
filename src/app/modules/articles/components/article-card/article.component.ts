@@ -16,6 +16,7 @@ import { createNgModule } from '@angular/compiler/src/core';
 export class ArticleComponent implements OnInit {
   @Input() article: ArticleItem;
   @Input() articleId: number;
+  @Input() filter: string;
 
   articlesSubscription: Subscription;
   isSaved: boolean;

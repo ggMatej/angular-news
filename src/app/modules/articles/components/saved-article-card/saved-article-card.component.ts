@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ArticleItem } from '../../models/ArticleItem';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -15,6 +15,8 @@ export class SavedArticleCardComponent implements OnInit {
   @Input() articleId: number;
   @Input() savedArticles: ArticleItem[];
 
+  @Output() showModal = new EventEmitter<number>();
+
   articlesSubscription: Subscription;
   isSaved: boolean;
 
@@ -23,23 +25,6 @@ export class SavedArticleCardComponent implements OnInit {
   ngOnInit(): void {}
 
   showDialog() {
-    const modal = document.getElementById('modal');
-    modal.classList.remove('hidden');
-  }
-
-  onRemove() {
-    console.log(this.article);
-    this.store.dispatch(
-      ArticleActions.DeleteSuccess({
-        payload: {
-          savedArticles: this.savedArticles.filter(
-            (article) => article.title !== this.article.title
-          ),
-        },
-      })
-    );
-
-    const modal = document.getElementById('modal');
-    modal.classList.add('hidden');
+    this.showModal.emit(this.articleId);
   }
 }

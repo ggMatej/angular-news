@@ -4,7 +4,14 @@
     <h3>{{ article.title }}</h3>
     <h5>{{ article.author }}, {{ article.publishedAt | date }}</h5>
     <div class="btn-group">
-      <button [routerLink]="['/articles', articleId]" class="btn btn--primary">
+      <button
+        [routerLink]="[
+          '/articles',
+          articleId,
+          { filter: filter ? filter : 'All' }
+        ]"
+        class="btn btn--primary"
+      >
         Read more
       </button>
       <button

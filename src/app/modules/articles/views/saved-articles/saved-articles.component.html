@@ -7,5 +7,13 @@
     [article]="article"
     [articleId]="articleId"
     [savedArticles]="savedArticles"
+    (showModal)="onShowModal($event)"
   ></app-saved-article-card>
+  <app-modal id="modal" *ngIf="showModal">
+    <h2>Remove from saved articles?</h2>
+    <div>
+      <button class="btn--modal" (click)="onRemove()">Remove</button>
+      <button class="btn--modal" (click)="onCancel()">Cancel</button>
+    </div>
+  </app-modal>
 </div>

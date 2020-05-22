@@ -46,7 +46,10 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     ArticlesModule,
     RouterModule.forRoot([
       { path: '', component: ArticlesComponent },
-      { path: 'articles/:articleId', component: ArticleDetailsComponent },
+      {
+        path: 'articles/:articleId',
+        component: ArticleDetailsComponent,
+      },
       {
         path: 'saved-articles/:articleId',
         component: SavedArticlesDetailsComponent,
